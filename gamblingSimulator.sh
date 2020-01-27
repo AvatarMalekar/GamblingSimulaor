@@ -24,11 +24,19 @@ cash_in_hand=$STAKE_FOR_DAY
 	
 	if [ $cash_in_hand -ge $WINNING_LIMIT_TO_RESIGN_FOR_DAY ]
 	then
-		GamblerDictionary[WON]=$((${GamblerDictionary[WON]}+1*50))
+		GamblerDictionary[WON]=$((${GamblerDictionary[WON]}+1))
 	else
-		GamblerDictionary[LOSE]=$((${GamblerDictionary[LOSE]}+1*50))
+		GamblerDictionary[LOSE]=$((${GamblerDictionary[LOSE]}+1))
 	fi
 done
-echo "Total amount staticstics"
+echo "Total days staticstics:"
+echo ${!GamblerDictionary[@]}
+echo ${GamblerDictionary[@]}
+
+for i in ${!GamblerDictionary[@]}
+do
+	GamblerDictionary[$i]=$((${GamblerDictionary[$i]}*50))
+done
+echo "Total ammount staticstics:"
 echo ${!GamblerDictionary[@]}
 echo ${GamblerDictionary[@]}
