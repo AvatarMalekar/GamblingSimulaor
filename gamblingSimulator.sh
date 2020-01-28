@@ -39,12 +39,12 @@ declare -A GamblerDictionary
 		else
 			GamblerDictionary[LOSE]=$((${GamblerDictionary[LOSE]}+1))
 		fi
-		if [ $countForMaxWin -gt $maxWinningAmount ]
+		if [ $countForMaxWin -gt $maxWinningAmount -a $cash_in_hand -ge $WINNING_LIMIT_TO_RESIGN_FOR_DAY ]
 		then
 			maxWinningAmount=$countForMaxWin
 			luckiestDay=$i
 		fi
-		if [ $countForMaxLose -gt $maxLosingAmmount ]
+		if [ $countForMaxLose -gt $maxLosingAmmount -a $cash_in_hand -le $LOSING_LIMIT_TO_RESIGN_FOR_DAY ]
    	then
       	maxLosingAmmount=$countForMaxLose
       	UnLuckiestDay=$i
@@ -58,7 +58,7 @@ for i in ${!GamblerDictionary[@]}
 do
 	GamblerDictionary[$i]=$((${GamblerDictionary[$i]}*50))
 done
-echo "Total ammount staticstics:"
+echo "Total ammount staticstics for a month:"
 echo ${!GamblerDictionary[@]}
 echo ${GamblerDictionary[@]}
 
