@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "-----------------------------------------------WELLOME TO GAMBLING SIMULATOR-------------------------------------------------"
+#CONSTANT
 STAKE_FOR_DAY=100;
 WINNING_LIMIT_TO_RESIGN_FOR_DAY=150;
 LOSING_LIMIT_TO_RESIGN_FOR_DAY=50;
@@ -7,6 +8,8 @@ TOTAL_DAYS_OF_MONTH=20;
 BET_PER_GAME=1;
 WIN=1;
 LOSE=0;
+
+#VARIABLE
 flag=0
 while [ $flag -eq 0 ]
 do
