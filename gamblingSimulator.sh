@@ -70,6 +70,21 @@ function clearDictionary(){
    	GamblerDictionary[$i]=0
 	done
 }
+function playInNextMonthOrNot(){
+if [ $1 -gt $2 ]
+then
+   read -p "Do you want to continue for next month..(y/n): " result
+   if [ "$result" = "Y" -o "$result" = "y" ]
+   then
+     local flag=0;
+   else
+     local flag=1;
+   fi
+else
+  local flag=1
+fi
+echo $flag
+}
 
 #MAIN-FUNCTION
 while [ $flag -eq 0 ]
@@ -87,31 +102,23 @@ do
 		unLuckiestDayDecider
 	done
 
-echo "Total days staticstics:"
+	echo "Total days staticstics:"
 
-#FUNCTION-CALLS
-showKeyValueOfDictionary
-monthlyWinOrLose
+	#FUNCTION-CALLS
+	showKeyValueOfDictionary
+	monthlyWinOrLose
 
-echo "Total ammount staticstics for a month:"
+	echo "Total ammount staticstics for a month:"
 
-#FUNCTION-CALL
-showKeyValueOfDictionary
+	#FUNCTION-CALL
+	showKeyValueOfDictionary
 
-echo "Luckiest Day is:" $luckiestDay
-echo "Unluckiest Day is:" $UnLuckiestDay
-echo "Max ammount Won:" $maxWinningAmount
-echo "max ammount Lost:" $maxLosingAmmount 
+	echo "Luckiest Day is:" $luckiestDay
+	echo "Unluckiest Day is:" $UnLuckiestDay
+	echo "Max ammount Won:" $maxWinningAmount
+	echo "max ammount Lost:" $maxLosingAmmount 
 
-#FUNCTION-CALL
-clearDictionary
-
-read -p "Do you want to continue for next month..(y/n): " result
-if [ "$result" = "Y" -o "$result" = "y" ]
-then
-	flag=0;
-else
-	flag=1;
-fi
-
+	#FUNCTION-CALLS
+	flag=$(playInNextMonthOrNot ${GamblerDictionary[WON]} ${GamblerDictionary[LOSE]})
+	clearDictionary
 done
